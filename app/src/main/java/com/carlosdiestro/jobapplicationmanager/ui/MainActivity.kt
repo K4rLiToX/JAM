@@ -1,7 +1,8 @@
-package com.carlosdiestro.jobapplicationmanager
+package com.carlosdiestro.jobapplicationmanager.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.carlosdiestro.jobapplicationmanager.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
