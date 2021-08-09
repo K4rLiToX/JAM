@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Job Application Manager</string>
+    <string name="app_name">JAM</string>
+    <string name="txt_clearbit">Logos de empresas por</string>
+    <string name="txt_clearbit_link"><u>clearbit.com</u></string>
+    <string name="btn_new_application">New Application</string>
+    <string name="new_job_title">Nueva Aplicación</string>
+    <string name="hint_job_position">Posición</string>
+    <string name="hint_company">Empresa</string>
+    <string name="hint_location">Localización</string>
+    <string name="hint_application_date">Fecha de aplicación</string>
 </resources>

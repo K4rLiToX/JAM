@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    tools:context=".ui.fragments.JobApplicationsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/app_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="8dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txt_app_toolbar"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_filter"
+            app:layout_constraintStart_toEndOf="@+id/btn_clean"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_clean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_clean"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_app_toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_app_toolbar"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btn_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_filter"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_app_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_app_toolbar"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/txt_clearbit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/txt_clearbit"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_clearbit_link"
+        app:layout_constraintTop_toBottomOf="@+id/app_toolbar" />
+
+    <TextView
+        android:id="@+id/txt_clearbit_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/txt_clearbit_link"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_clearbit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txt_clearbit"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_job_applications"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:padding="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_clearbit"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_new_application"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:text="@string/btn_new_application"
+        android:textAllCaps="false"
+        android:textColor="?attr/colorOnPrimary"
+        app:icon="@drawable/ic_add"
+        app:iconTint="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:shapeAppearanceOverlay="@style/PrimaryFAB" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
