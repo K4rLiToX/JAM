@@ -17,14 +17,14 @@ interface JobApplicationDAO {
     suspend fun clearNonPendingJobApplications()
 
     @Query("SELECT * FROM application_table ORDER BY id DESC")
-    fun getAll() : LiveData<List<JobApplication>>
+    fun getAll(): LiveData<List<JobApplication>>
 
     @Query("SELECT * FROM application_table WHERE status = 0 ORDER BY id DESC")
-    fun getPendingJobApplications() : LiveData<List<JobApplication>>
+    fun getPendingJobApplications(): LiveData<List<JobApplication>>
 
     @Query("SELECT * FROM application_table WHERE status = 1 ORDER BY id DESC")
-    fun getAcceptedJobApplications() : LiveData<List<JobApplication>>
+    fun getAcceptedJobApplications(): LiveData<List<JobApplication>>
 
     @Query("SELECT * FROM application_table WHERE status = 2 ORDER BY id DESC")
-    fun getRejectedJobApplications() : LiveData<List<JobApplication>>
+    fun getRejectedJobApplications(): LiveData<List<JobApplication>>
 }
