@@ -65,29 +65,26 @@
         android:id="@+id/rv_job_applications"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
         android:padding="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_clearbit"
+        app:layout_constraintTop_toBottomOf="@+id/app_toolbar"
         tools:layout_editor_absoluteX="0dp" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_new_application"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="?attr/colorPrimary"
-        android:text="@string/btn_new_application"
-        android:textAllCaps="false"
-        android:textColor="?attr/colorOnPrimary"
-        app:icon="@drawable/ic_add"
-        app:iconTint="?attr/colorOnPrimary"
+        app:backgroundTint="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:shapeAppearanceOverlay="@style/PrimaryFAB" />
+        app:rippleColor="@color/dark_grey"
+        app:shapeAppearanceOverlay="@style/PrimaryFAB"
+        app:srcCompat="@drawable/ic_add"
+        app:tint="?attr/colorOnPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
