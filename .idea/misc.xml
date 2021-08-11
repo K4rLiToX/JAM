@@ -5,12 +5,14 @@
       <map>
         <entry key="..\:/Users/Usuario/Documents/Proyectos_Android/JobApplicationManager/app/src/main/res/drawable/ic_add.xml" value="0.5703125" />
         <entry key="..\:/Users/Usuario/Documents/Proyectos_Android/JobApplicationManager/app/src/main/res/drawable/ic_location.xml" value="0.2814814814814815" />
+        <entry key="..\:/Users/Usuario/Documents/Proyectos_Android/JobApplicationManager/app/src/main/res/drawable/status_text_bacground.xml" value="0.24444444444444444" />
         <entry key="..\:/Users/Usuario/Documents/Proyectos_Android/JobApplicationManager/app/src/main/res/font/inria_sanserif.xml" value="0.17037037037037037" />
         <entry key="..\:/Users/Usuario/Documents/Proyectos_Android/JobApplicationManager/app/src/main/res/font/inria_serif.xml" value="0.17037037037037037" />
         <entry key="..\:/Users/Usuario/Documents/Proyectos_Android/JobApplicationManager/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/Usuario/Documents/Proyectos_Android/JobApplicationManager/app/src/main/res/layout/fragment_job_applications.xml" value="0.5" />
         <entry key="..\:/Users/Usuario/Documents/Proyectos_Android/JobApplicationManager/app/src/main/res/layout/fragment_new_job_application.xml" value="0.5" />
         <entry key="..\:/Users/Usuario/Documents/Proyectos_Android/JobApplicationManager/app/src/main/res/layout/fragment_splashscreen.xml" value="0.33" />
+        <entry key="..\:/Users/Usuario/Documents/Proyectos_Android/JobApplicationManager/app/src/main/res/layout/job_application_item_layout.xml" value="0.33" />
       </map>
     </option>
   </component>

@@ -8,4 +8,7 @@
     <string name="hint_company">Empresa</string>
     <string name="hint_location">Localización</string>
     <string name="hint_application_date">Fecha de aplicación</string>
+    <string name="pending_status">Pendiente</string>
+    <string name="accepted_status">Aceptado</string>
+    <string name="rejected_status">Rechazado</string>
 </resources>
