@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.carlosdiestro.jobapplicationmanager.R
 import com.carlosdiestro.jobapplicationmanager.databinding.JobApplicationItemLayoutBinding
 import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplication
+import com.carlosdiestro.jobapplicationmanager.utils.Constants.ACCEPTED_STATUS
+import com.carlosdiestro.jobapplicationmanager.utils.Constants.PENDING_STATUS
+import com.carlosdiestro.jobapplicationmanager.utils.Constants.REJECTED_STATUS
 
 class JobApplicationAdapter(
     private val ctx: Context
@@ -38,8 +41,8 @@ class JobApplicationAdapter(
         }
 
         private fun getStatusBackgroundColor(status: Int) = when(status) {
-            0 -> ctx.getColor(R.color.light_blue)
-            1 -> ctx.getColor(R.color.light_green)
+            PENDING_STATUS -> ctx.getColor(R.color.light_blue)
+            ACCEPTED_STATUS -> ctx.getColor(R.color.light_green)
             else -> ctx.getColor(R.color.light_red)
         }
     }
