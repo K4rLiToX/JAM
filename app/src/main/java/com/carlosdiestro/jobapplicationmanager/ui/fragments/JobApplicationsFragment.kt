@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.carlosdiestro.jobapplicationmanager.R
 import com.carlosdiestro.jobapplicationmanager.databinding.FragmentJobApplicationsBinding
+import com.carlosdiestro.jobapplicationmanager.ui.adapters.JobApplicationAdapter
 import com.carlosdiestro.jobapplicationmanager.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +18,7 @@ class JobApplicationsFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentJobApplicationsBinding
+    private lateinit var recyclerAdapter: JobApplicationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +31,8 @@ class JobApplicationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpClickListeners()
+        setUpRecyclerView()
+        observeJobApplications()
     }
 
     private fun setUpClickListeners() {
@@ -38,4 +42,16 @@ class JobApplicationsFragment : Fragment() {
     private fun navigateToNewJobApplication() {
         findNavController().navigate(R.id.jobApplicationsToNewJobApplication)
     }
+
+    private fun setUpRecyclerView() = binding.rvJobApplications.apply {
+        recyclerAdapter = JobApplicationAdapter(requireContext())
+        adapter = recyclerAdapter
+    }
+
+    private fun observeJobApplications() {
+        viewModel.jobApplications.observe(viewLifecycleOwner, { jobApplications ->
+            recyclerAdapter.submitList(jobApplications)
+        })
+    }
+
 }
