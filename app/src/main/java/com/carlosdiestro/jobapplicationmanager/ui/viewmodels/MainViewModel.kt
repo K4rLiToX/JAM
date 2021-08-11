@@ -18,4 +18,8 @@ class MainViewModel @Inject constructor(
     fun insertJobApplication(jobApplication: JobApplication) = viewModelScope.launch {
         mainRepository.insertJobApplication(jobApplication)
     }
+
+    fun updateJobApplication(jobApplication: JobApplication) = viewModelScope.launch {
+        mainRepository.updateJobApplication(jobApplication)
+    }
 }
