@@ -33,6 +33,7 @@ class JobApplicationAdapter(
         private val binding = JobApplicationItemLayoutBinding.bind(itemView)
 
         fun bind(jobApplication: JobApplication) = with(binding) {
+            txtCompany.text = jobApplication.company
             txtApplicationDate.text = jobApplication.applicationDate
             txtJobPosition.text = jobApplication.jobPosition
             txtLocation.text = jobApplication.location
