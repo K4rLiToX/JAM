@@ -23,6 +23,7 @@ class NewJobApplicationFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentNewJobApplicationBinding
+    private var dateTimeStamp: Long = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,7 +67,7 @@ class NewJobApplicationFragment : Fragment() {
                     etCompany.text.toString().trim(),
                     etLocation.text.toString().trim(),
                     PENDING_STATUS,
-                    etApplicationDate.text.toString()
+                    dateTimeStamp
                 )
             )
         }
@@ -100,8 +101,9 @@ class NewJobApplicationFragment : Fragment() {
     private fun manageDatePickerClickListeners(datePicker: MaterialDatePicker<Long>) {
         with(datePicker) {
             addOnPositiveButtonClickListener {
+                dateTimeStamp = selection!!
                 binding.etApplicationDate.setText(
-                    SimpleDateFormat("dd/MM/yyyy", Locale.US).format(Date(selection!!))
+                    SimpleDateFormat("dd/MM/yyyy", Locale.US).format(Date(dateTimeStamp))
                 )
                 dismiss()
             }

@@ -34,7 +34,7 @@ class JobApplicationAdapter(
 
         fun bind(jobApplication: JobApplication) = with(binding) {
             txtCompany.text = jobApplication.company
-            txtApplicationDate.text = jobApplication.applicationDate
+            txtApplicationDate.text = jobApplication.timeStampToDate(jobApplication.applicationDate)
             txtJobPosition.text = jobApplication.jobPosition
             txtLocation.text = jobApplication.location
             txtStatus.text = jobApplication.mapStatusToString(ctx, jobApplication.status)
