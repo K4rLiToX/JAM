@@ -7,7 +7,7 @@ import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplicatio
 
 @Database(
     entities = [JobApplication::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class LocalDatabase : RoomDatabase() {
