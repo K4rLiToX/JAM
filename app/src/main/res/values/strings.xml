@@ -11,4 +11,6 @@
     <string name="pending_status">Pendiente</string>
     <string name="accepted_status">Aceptado</string>
     <string name="rejected_status">Rechazado</string>
+    <string name="date_picker_title">Selecciona la Fecha de Aplicación</string>
+    <string name="add_new_job_application_error">Completa todos los campos por favor</string>
 </resources>

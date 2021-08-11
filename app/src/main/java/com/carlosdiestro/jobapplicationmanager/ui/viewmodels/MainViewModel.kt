@@ -10,8 +10,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    mainRepository: MainRepository
+    private val mainRepository: MainRepository
 ) : ViewModel() {
 
     val jobApplications = mainRepository.getAll()
+
+    fun insertJobApplication(jobApplication: JobApplication) = viewModelScope.launch {
+        mainRepository.insertJobApplication(jobApplication)
+    }
 }
