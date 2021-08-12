@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import androidx.annotation.MenuRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,7 +18,9 @@ import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplicatio
 import com.carlosdiestro.jobapplicationmanager.ui.adapters.JobApplicationAdapter
 import com.carlosdiestro.jobapplicationmanager.ui.viewmodels.MainViewModel
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.ACCEPTED_STATUS
+import com.carlosdiestro.jobapplicationmanager.utils.Constants.PENDING_STATUS
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.REJECTED_STATUS
+import com.carlosdiestro.jobapplicationmanager.utils.FilterType
 import dagger.hilt.android.AndroidEntryPoint
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
@@ -41,15 +45,53 @@ class JobApplicationsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpClickListeners()
         setUpRecyclerView()
-        observeJobApplications()
+        setFilterText(viewModel.filterType)
+        observeAllJobApplications()
     }
 
     private fun setUpClickListeners() {
-        binding.btnNewApplication.setOnClickListener { navigateToNewJobApplication() }
+        binding.apply {
+            btnNewApplication.setOnClickListener { navigateToNewJobApplication() }
+            btnFilter.setOnClickListener { v -> openStatusFilterMenu(v, R.menu.status_filter_menu) }
+        }
     }
 
     private fun navigateToNewJobApplication() {
-        findNavController().navigate(com.carlosdiestro.jobapplicationmanager.R.id.jobApplicationsToNewJobApplication)
+        findNavController().navigate(R.id.jobApplicationsToNewJobApplication)
+    }
+
+    private fun openStatusFilterMenu(v: View, @MenuRes statusFilterMenu: Int) {
+        val popUp = PopupMenu(requireContext(), v)
+
+        popUp.apply {
+            menuInflater.inflate(statusFilterMenu, popUp.menu)
+            setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.status_filter_by_all -> {
+                        viewModel.filterJobApplications(FilterType.ALL)
+//                        setFilterText(viewModel.filterType)
+                        true
+                    }
+                    R.id.status_filter_by_pending -> {
+                        viewModel.filterJobApplications(FilterType.PENDING)
+//                        setFilterText(viewModel.filterType)
+                        true
+                    }
+                    R.id.status_filter_by_accepted -> {
+                        viewModel.filterJobApplications(FilterType.ACCEPTED)
+//                        setFilterText(viewModel.filterType)
+                        true
+                    }
+                    R.id.status_filter_by_rejected -> {
+                        viewModel.filterJobApplications(FilterType.REJECTED)
+//                        setFilterText(viewModel.filterType)
+                        true
+                    }
+                    else -> false
+                }.also { setFilterText(viewModel.filterType) }
+            }
+            show()
+        }
     }
 
     private fun setUpRecyclerView() = binding.rvJobApplications.apply {
@@ -58,8 +100,18 @@ class JobApplicationsFragment : Fragment() {
         ItemTouchHelper(swipeGesture).attachToRecyclerView(this)
     }
 
-    private fun observeJobApplications() {
-        viewModel.jobApplications.observe(viewLifecycleOwner, { jobApplications ->
+    private fun setFilterText(filterType: FilterType) = binding.apply {
+        val id = when (filterType) {
+            FilterType.ALL -> R.string.status_filter_menu_all
+            FilterType.PENDING -> R.string.status_filter_menu_pending
+            FilterType.ACCEPTED -> R.string.status_filter_menu_accepted
+            FilterType.REJECTED -> R.string.status_filter_menu_rejected
+        }
+        txtShowFilter.text = getString(id)
+    }
+
+    private fun observeAllJobApplications() = viewModel.apply {
+        jobApplications.observe(viewLifecycleOwner, { jobApplications ->
             jobApplicationList = jobApplications
             recyclerAdapter.submitList(jobApplications)
         })
@@ -76,12 +128,15 @@ class JobApplicationsFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val jobApplication = jobApplicationList[viewHolder.absoluteAdapterPosition]
-                when (direction) {
-                    ItemTouchHelper.LEFT -> jobApplication.status = REJECTED_STATUS
-                    ItemTouchHelper.RIGHT -> jobApplication.status = ACCEPTED_STATUS
+                jobApplicationList[viewHolder.absoluteAdapterPosition].apply {
+                    if (status == PENDING_STATUS) {
+                        when (direction) {
+                            ItemTouchHelper.LEFT -> status = REJECTED_STATUS
+                            ItemTouchHelper.RIGHT -> status = ACCEPTED_STATUS
+                        }
+                        viewModel.updateJobApplication(this)
+                    }
                 }
-                viewModel.updateJobApplication(jobApplication)
                 binding.rvJobApplications.adapter = recyclerAdapter
             }
 
