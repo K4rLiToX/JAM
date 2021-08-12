@@ -28,7 +28,7 @@ class JobApplicationAdapter(
 
     override fun onBindViewHolder(holder: JobApplicationViewHolder, position: Int) {
         holder.bind(getItem(position))
-        holder.itemView.setOnClickListener { iJobApplicationListener.onItemClicked(getItem(position).id!!) }
+        holder.itemView.setOnClickListener { iJobApplicationListener.onItemClicked(getItem(position)) }
     }
 
     inner class JobApplicationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -52,7 +52,7 @@ class JobApplicationAdapter(
 }
 
 interface IJobApplicationListener {
-    fun onItemClicked(id: Int)
+    fun onItemClicked(jobApplication: JobApplication)
 }
 
 private object JobApplicationDiffUtilCallback : DiffUtil.ItemCallback<JobApplication>() {
