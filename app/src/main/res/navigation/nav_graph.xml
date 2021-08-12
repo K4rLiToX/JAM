@@ -31,5 +31,9 @@
         android:id="@+id/newJobApplicationFragment"
         android:name="com.carlosdiestro.jobapplicationmanager.ui.fragments.NewJobApplicationFragment"
         android:label="fragment_new_job_application"
-        tools:layout="@layout/fragment_new_job_application" />
+        tools:layout="@layout/fragment_new_job_application" >
+        <argument
+            android:name="jobApplication"
+            app:argType="string" />
+    </fragment>
 </navigation>

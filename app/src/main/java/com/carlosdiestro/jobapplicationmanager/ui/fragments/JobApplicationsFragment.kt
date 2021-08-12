@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.carlosdiestro.jobapplicationmanager.R
 import com.carlosdiestro.jobapplicationmanager.databinding.FragmentJobApplicationsBinding
 import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplication
+import com.carlosdiestro.jobapplicationmanager.ui.adapters.IJobApplicationListener
 import com.carlosdiestro.jobapplicationmanager.ui.adapters.JobApplicationAdapter
 import com.carlosdiestro.jobapplicationmanager.ui.viewmodels.MainViewModel
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.ACCEPTED_STATUS
+import com.carlosdiestro.jobapplicationmanager.utils.Constants.GSON
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.PENDING_STATUS
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.REJECTED_STATUS
 import com.carlosdiestro.jobapplicationmanager.utils.FilterType
@@ -27,7 +29,7 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 
 @AndroidEntryPoint
-class JobApplicationsFragment : Fragment() {
+class JobApplicationsFragment : Fragment(), IJobApplicationListener {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentJobApplicationsBinding
@@ -52,14 +54,18 @@ class JobApplicationsFragment : Fragment() {
 
     private fun setUpClickListeners() {
         binding.apply {
-            btnNewApplication.setOnClickListener { navigateToNewJobApplication() }
+            btnNewApplication.setOnClickListener { navigateToNewJobApplicationFragment("") }
             btnFilter.setOnClickListener { v -> openStatusFilterMenu(v, R.menu.status_filter_menu) }
             btnClean.setOnClickListener { openCleanConfirmationDialog() }
         }
     }
 
-    private fun navigateToNewJobApplication() {
-        findNavController().navigate(R.id.jobApplicationsToNewJobApplication)
+    private fun navigateToNewJobApplicationFragment(serializedJobApplication: String) {
+        findNavController().navigate(
+            JobApplicationsFragmentDirections.jobApplicationsToNewJobApplication(
+                serializedJobApplication
+            )
+        )
     }
 
     private fun openStatusFilterMenu(v: View, @MenuRes statusFilterMenu: Int) {
@@ -107,7 +113,7 @@ class JobApplicationsFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() = binding.rvJobApplications.apply {
-        recyclerAdapter = JobApplicationAdapter(requireContext())
+        recyclerAdapter = JobApplicationAdapter(requireContext(), this@JobApplicationsFragment)
         adapter = recyclerAdapter
         ItemTouchHelper(swipeGesture).attachToRecyclerView(this)
     }
@@ -198,4 +204,8 @@ class JobApplicationsFragment : Fragment() {
                 )
             }
         }
+
+    override fun onItemClicked(jobApplication: JobApplication) {
+        navigateToNewJobApplicationFragment(GSON.toJson(jobApplication))
+    }
 }

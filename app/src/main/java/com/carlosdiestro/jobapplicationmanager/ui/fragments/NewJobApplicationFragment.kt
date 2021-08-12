@@ -11,6 +11,7 @@ import com.carlosdiestro.jobapplicationmanager.R
 import com.carlosdiestro.jobapplicationmanager.databinding.FragmentNewJobApplicationBinding
 import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplication
 import com.carlosdiestro.jobapplicationmanager.ui.viewmodels.MainViewModel
+import com.carlosdiestro.jobapplicationmanager.utils.Constants.GSON
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.PENDING_STATUS
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
@@ -24,22 +25,37 @@ class NewJobApplicationFragment : Fragment() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentNewJobApplicationBinding
     private var dateTimeStamp: Long = 0
+    private lateinit var jobApplication: JobApplication
+    private var isEditionMode: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        initialSetUp()
         binding = FragmentNewJobApplicationBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    private fun initialSetUp() {
+        arguments?.let {
+            val jobApplicationSerialized =
+                NewJobApplicationFragmentArgs.fromBundle(it).jobApplication
+            if (jobApplicationSerialized != "") {
+                jobApplication = GSON.fromJson(jobApplicationSerialized, JobApplication::class.java)
+                isEditionMode = true
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpClickListeners()
+        if (isEditionMode) setUpEditionMode()
     }
 
     private fun setUpClickListeners() {
-        with(binding) {
+        binding.apply {
             btnBackToJobApplications.setOnClickListener { navigateBack() }
             btnAddNewApplication.setOnClickListener { addNewJobApplication() }
             etApplicationDate.setOnClickListener { openDatePicker() }
@@ -52,7 +68,8 @@ class NewJobApplicationFragment : Fragment() {
 
     private fun addNewJobApplication() {
         if (!areFieldsEmpty()) {
-            insertJobApplication()
+            if (!isEditionMode) insertJobApplication()
+            else updateJobApplication()
             navigateBack()
         } else {
             showWarning()
@@ -60,7 +77,7 @@ class NewJobApplicationFragment : Fragment() {
     }
 
     private fun insertJobApplication() {
-        with(binding) {
+        binding.apply {
             viewModel.insertJobApplication(
                 JobApplication(
                     etJobPosition.text.toString().trim(),
@@ -71,6 +88,18 @@ class NewJobApplicationFragment : Fragment() {
                 )
             )
         }
+    }
+
+    private fun updateJobApplication() {
+        binding.apply {
+            jobApplication.apply {
+                jobPosition = etJobPosition.text.toString().trim()
+                company = etCompany.text.toString().trim()
+                location = etLocation.text.toString().trim()
+                applicationDate = dateTimeStamp
+            }
+        }
+        viewModel.updateJobApplication(jobApplication)
     }
 
     private fun showWarning() {
@@ -109,6 +138,19 @@ class NewJobApplicationFragment : Fragment() {
             }
             addOnNegativeButtonClickListener {
                 dismiss()
+            }
+        }
+    }
+
+    private fun setUpEditionMode() {
+        binding.apply {
+            newJobTitle.text = getString(R.string.edit_job_title)
+            jobApplication.apply {
+                etJobPosition.setText(jobPosition)
+                etCompany.setText(company)
+                etLocation.setText(location)
+                etApplicationDate.setText(timeStampToDate(applicationDate))
+                dateTimeStamp = applicationDate
             }
         }
     }
