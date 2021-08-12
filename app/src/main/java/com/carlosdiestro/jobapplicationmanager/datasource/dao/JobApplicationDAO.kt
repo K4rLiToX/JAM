@@ -13,8 +13,11 @@ interface JobApplicationDAO {
     @Update
     suspend fun updateJobApplication(jobApplication: JobApplication)
 
-    @Query("DELETE FROM application_table WHERE status = 1 AND status = 2")
-    suspend fun clearNonPendingJobApplications()
+    @Query("DELETE FROM application_table WHERE status = 1")
+    suspend fun clearAcceptedJobApplications()
+
+    @Query("DELETE FROM application_table WHERE status = 2")
+    suspend fun clearRejectedJobApplications()
 
     @Query("SELECT * FROM application_table ORDER BY applicationDate DESC")
     fun getAll(): LiveData<List<JobApplication>>
