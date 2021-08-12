@@ -15,7 +15,8 @@ import com.carlosdiestro.jobapplicationmanager.utils.Constants.PENDING_STATUS
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.REJECTED_STATUS
 
 class JobApplicationAdapter(
-    private val ctx: Context
+    private val ctx: Context,
+    private val iJobApplicationListener: IJobApplicationListener
 ) :
     ListAdapter<JobApplication, JobApplicationAdapter.JobApplicationViewHolder>(
         JobApplicationDiffUtilCallback
@@ -27,6 +28,7 @@ class JobApplicationAdapter(
 
     override fun onBindViewHolder(holder: JobApplicationViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.setOnClickListener { iJobApplicationListener.onItemClicked(getItem(position).id!!) }
     }
 
     inner class JobApplicationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -47,6 +49,10 @@ class JobApplicationAdapter(
             else -> ctx.getColor(R.color.light_red)
         }
     }
+}
+
+interface IJobApplicationListener {
+    fun onItemClicked(id: Int)
 }
 
 private object JobApplicationDiffUtilCallback : DiffUtil.ItemCallback<JobApplication>() {
