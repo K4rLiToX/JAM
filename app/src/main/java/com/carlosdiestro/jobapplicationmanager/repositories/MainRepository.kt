@@ -14,8 +14,10 @@ class MainRepository @Inject constructor(
     suspend fun updateJobApplication(jobApplication: JobApplication) =
         jobApplicationDAO.updateJobApplication(jobApplication)
 
-    suspend fun clearNonPendingJobApplications() =
-        jobApplicationDAO.clearNonPendingJobApplications()
+    suspend fun clearNonPendingJobApplications() = jobApplicationDAO.apply {
+        clearAcceptedJobApplications()
+        clearRejectedJobApplications()
+    }
 
     fun getAll() =
         jobApplicationDAO.getAll()
