@@ -13,4 +13,8 @@
     <string name="rejected_status">Rechazado</string>
     <string name="date_picker_title">Selecciona la Fecha de Aplicación</string>
     <string name="add_new_job_application_error">Completa todos los campos por favor</string>
+    <string name="status_filter_menu_all">Todas</string>
+    <string name="status_filter_menu_pending">Pendientes</string>
+    <string name="status_filter_menu_accepted">Aceptadas</string>
+    <string name="status_filter_menu_rejected">Rechazadas</string>
 </resources>
