@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">JAM</string>
-    <string name="txt_clearbit">Logos de empresas por</string>
-    <string name="txt_clearbit_link"><u>clearbit.com</u></string>
-    <string name="btn_new_application">New Application</string>
     <string name="new_job_title">Nueva Aplicación</string>
     <string name="edit_job_title">Editar Aplicación</string>
     <string name="hint_job_position">Posición</string>
@@ -19,7 +16,7 @@
     <string name="status_filter_menu_accepted">Aceptadas</string>
     <string name="status_filter_menu_rejected">Rechazadas</string>
     <string name="clean_alert_dialog_title">¡Atención!</string>
-    <string name="clean_alert_dialog_message">Estás a punto de eliminar todas las aplicaciones marcadas como <u>aceptada</u> y <u>rechazada</u>. ¿Desea continuar?</string>
+    <string name="clean_alert_dialog_message">Estás a punto de eliminar todas las aplicaciones marcadas como aceptada y rechazada. ¿Desea continuar?</string>
     <string name="clean_alert_dialog_positive_button_text">Limpiar</string>
     <string name="clean_alert_dialog_negative_button_text">Cancelar</string>
 </resources>
