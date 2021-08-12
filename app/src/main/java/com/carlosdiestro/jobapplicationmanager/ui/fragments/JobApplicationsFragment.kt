@@ -71,22 +71,18 @@ class JobApplicationsFragment : Fragment() {
                 when (menuItem.itemId) {
                     R.id.status_filter_by_all -> {
                         viewModel.filterJobApplications(FilterType.ALL)
-//                        setFilterText(viewModel.filterType)
                         true
                     }
                     R.id.status_filter_by_pending -> {
                         viewModel.filterJobApplications(FilterType.PENDING)
-//                        setFilterText(viewModel.filterType)
                         true
                     }
                     R.id.status_filter_by_accepted -> {
                         viewModel.filterJobApplications(FilterType.ACCEPTED)
-//                        setFilterText(viewModel.filterType)
                         true
                     }
                     R.id.status_filter_by_rejected -> {
                         viewModel.filterJobApplications(FilterType.REJECTED)
-//                        setFilterText(viewModel.filterType)
                         true
                     }
                     else -> false
