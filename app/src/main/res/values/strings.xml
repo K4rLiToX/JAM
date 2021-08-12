@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">JAM</string>
-    <string name="txt_clearbit">Logos de empresas por</string>
-    <string name="txt_clearbit_link"><u>clearbit.com</u></string>
-    <string name="btn_new_application">New Application</string>
     <string name="new_job_title">Nueva Aplicación</string>
     <string name="edit_job_title">Editar Aplicación</string>
     <string name="hint_job_position">Posición</string>
