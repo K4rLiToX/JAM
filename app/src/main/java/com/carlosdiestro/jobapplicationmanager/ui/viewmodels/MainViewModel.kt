@@ -63,4 +63,8 @@ class MainViewModel @Inject constructor(
     fun updateJobApplication(jobApplication: JobApplication) = viewModelScope.launch {
         mainRepository.updateJobApplication(jobApplication)
     }
+
+    fun cleanNonPendingJobApplications() = viewModelScope.launch {
+        mainRepository.clearNonPendingJobApplications()
+    }
 }

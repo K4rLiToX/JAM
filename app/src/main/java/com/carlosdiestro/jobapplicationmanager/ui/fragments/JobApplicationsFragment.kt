@@ -21,6 +21,7 @@ import com.carlosdiestro.jobapplicationmanager.utils.Constants.ACCEPTED_STATUS
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.PENDING_STATUS
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.REJECTED_STATUS
 import com.carlosdiestro.jobapplicationmanager.utils.FilterType
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
@@ -53,6 +54,7 @@ class JobApplicationsFragment : Fragment() {
         binding.apply {
             btnNewApplication.setOnClickListener { navigateToNewJobApplication() }
             btnFilter.setOnClickListener { v -> openStatusFilterMenu(v, R.menu.status_filter_menu) }
+            btnClean.setOnClickListener { openCleanConfirmationDialog() }
         }
     }
 
@@ -92,6 +94,20 @@ class JobApplicationsFragment : Fragment() {
             }
             show()
         }
+    }
+
+    private fun openCleanConfirmationDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.clean_alert_dialog_title))
+            .setMessage(getString(R.string.clean_alert_dialog_message))
+            .setPositiveButton(getString(R.string.clean_alert_dialog_positive_button_text)) { dialog, _ ->
+                viewModel.cleanNonPendingJobApplications()
+                dialog.dismiss()
+            }
+            .setNegativeButton(getString(R.string.clean_alert_dialog_negative_button_text)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
     private fun setUpRecyclerView() = binding.rvJobApplications.apply {

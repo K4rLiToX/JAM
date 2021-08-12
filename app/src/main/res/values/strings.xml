@@ -17,4 +17,8 @@
     <string name="status_filter_menu_pending">Pendientes</string>
     <string name="status_filter_menu_accepted">Aceptadas</string>
     <string name="status_filter_menu_rejected">Rechazadas</string>
+    <string name="clean_alert_dialog_title">¡Atención!</string>
+    <string name="clean_alert_dialog_message">Estás a punto de eliminar todas las aplicaciones marcadas como <u>aceptada</u> y <u>rechazada</u>. ¿Desea continuar?</string>
+    <string name="clean_alert_dialog_positive_button_text">Limpiar</string>
+    <string name="clean_alert_dialog_negative_button_text">Cancelar</string>
 </resources>
