@@ -3,19 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashscreenFragment">
+    app:startDestination="@id/getStartedFragment">
 
     <fragment
-        android:id="@+id/splashscreenFragment"
-        android:name="com.carlosdiestro.jobapplicationmanager.ui.fragments.SplashscreenFragment"
+        android:id="@+id/getStartedFragment"
+        android:name="com.carlosdiestro.jobapplicationmanager.ui.fragments.GetStartedFragment"
         android:label="fragment_splashscreen"
-        tools:layout="@layout/fragment_splashscreen">
+        tools:layout="@layout/fragment_get_started">
         <action
-            android:id="@+id/splashscreenToJobApplications"
+            android:id="@+id/getStartedToJobApplications"
             app:destination="@id/jobApplicationsFragment"
             app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/splashscreenFragment"
+            app:popUpTo="@id/getStartedFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
