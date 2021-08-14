@@ -72,8 +72,9 @@ class NewJobApplicationFragment : Fragment() {
     private fun setUpClickListeners() {
         binding.apply {
             btnBackToJobApplications.setOnClickListener { navigateBack() }
-            btnAddNewApplication.setOnClickListener { addNewJobApplication() }
+            btnAddNewApplication.setOnClickListener { addOrEditJobApplication() }
             etApplicationDate.setOnClickListener { openDatePicker() }
+            btnResetStatus.setOnClickListener { resetStatus() }
         }
     }
 
@@ -81,7 +82,7 @@ class NewJobApplicationFragment : Fragment() {
         findNavController().popBackStack()
     }
 
-    private fun addNewJobApplication() {
+    private fun addOrEditJobApplication() {
         if (!areFieldsEmpty()) {
             if (!isEditionMode) insertJobApplication()
             else updateJobApplication()
@@ -111,6 +112,7 @@ class NewJobApplicationFragment : Fragment() {
                 jobPosition = etJobPosition.text.toString().trim()
                 company = etCompany.text.toString().trim()
                 location = etLocation.text.toString().trim()
+                if(!btnResetStatus.isEnabled) status = PENDING_STATUS
                 applicationDate = dateTimeStamp
             }
         }
@@ -155,6 +157,16 @@ class NewJobApplicationFragment : Fragment() {
                 dismiss()
             }
         }
+    }
+
+    private fun resetStatus() {
+        jobApplication.status = PENDING_STATUS
+        binding.apply {
+            btnResetStatus.text = getString(R.string.btn_reset_status_done)
+            btnResetStatus.icon = null
+            btnResetStatus.isEnabled = false
+        }
+
     }
 
     private fun setUpEditionMode() {
