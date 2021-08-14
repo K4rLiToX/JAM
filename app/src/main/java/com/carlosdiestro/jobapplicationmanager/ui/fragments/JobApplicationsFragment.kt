@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.annotation.MenuRes
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -40,8 +42,18 @@ class JobApplicationsFragment : Fragment(), IJobApplicationListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setUpStatusBarColor()
         binding = FragmentJobApplicationsBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    private fun setUpStatusBarColor() {
+        requireActivity().window.statusBarColor =
+            ContextCompat.getColor(requireContext(), R.color.black)
+        WindowInsetsControllerCompat(
+            requireActivity().window,
+            requireActivity().window.decorView
+        ).isAppearanceLightStatusBars = false
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
