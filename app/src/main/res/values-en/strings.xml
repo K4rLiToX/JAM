@@ -12,6 +12,7 @@
     <string name="hint_location">Localization</string>
     <string name="hint_application_date">Application date</string>
     <string name="btn_reset_status">Reset Status</string>
+    <string name="btn_reset_status_done">Done!</string>
     <string name="pending_status">Pending</string>
     <string name="accepted_status">Accepted</string>
     <string name="rejected_status">Rejected</string>

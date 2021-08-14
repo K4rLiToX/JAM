@@ -11,6 +11,7 @@
     <string name="hint_location">Localización</string>
     <string name="hint_application_date">Fecha de aplicación</string>
     <string name="btn_reset_status">Resetear Estado </string>
+    <string name="btn_reset_status_done">Hecho!</string>
     <string name="pending_status">Pendiente</string>
     <string name="accepted_status">Aceptada</string>
     <string name="rejected_status">Rechazada</string>
