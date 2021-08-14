@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,6 +16,9 @@ import com.carlosdiestro.jobapplicationmanager.ui.viewmodels.MainViewModel
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.GSON
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.PENDING_STATUS
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -50,8 +55,18 @@ class NewJobApplicationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpViewStyle()
         setUpClickListeners()
         if (isEditionMode) setUpEditionMode()
+    }
+
+    private fun setUpViewStyle() {
+        val shapeAppearanceModel =
+            ShapeAppearanceModel().toBuilder().setTopRightCorner(CornerFamily.CUT, 300F).build()
+        val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
+
+        shapeDrawable.fillColor = ContextCompat.getColorStateList(requireContext(), R.color.white)
+        ViewCompat.setBackground(binding.newJobLayout, shapeDrawable)
     }
 
     private fun setUpClickListeners() {
@@ -152,6 +167,7 @@ class NewJobApplicationFragment : Fragment() {
                 etApplicationDate.setText(timeStampToDate(applicationDate))
                 dateTimeStamp = applicationDate
             }
+            btnResetStatus.visibility = View.VISIBLE
         }
     }
 }
