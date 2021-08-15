@@ -157,7 +157,24 @@ class JobApplicationsFragment : Fragment(), IJobApplicationListener {
         jobApplications.observe(viewLifecycleOwner, { jobApplications ->
             jobApplicationList = jobApplications
             recyclerAdapter.submitList(jobApplications)
+            setViewsToShow(jobApplications)
         })
+    }
+
+    private fun setViewsToShow(jobApplications: List<JobApplication>) {
+        var recyclerViewVisibility = View.VISIBLE
+        var emptyListIconVisibility = View.INVISIBLE
+        
+        if(jobApplications.isEmpty()) {
+            recyclerViewVisibility = View.INVISIBLE
+            emptyListIconVisibility = View.INVISIBLE
+        }
+        viewsVisibility(recyclerViewVisibility, emptyListIconVisibility)
+    }
+
+    private fun viewsVisibility(recyclerViewVisibility: Int, emptyListIconVisibility: Int) = binding.apply {
+        rvJobApplications.visibility = recyclerViewVisibility
+        icEmptyList.visibility = emptyListIconVisibility
     }
 
     private val swipeGesture =
