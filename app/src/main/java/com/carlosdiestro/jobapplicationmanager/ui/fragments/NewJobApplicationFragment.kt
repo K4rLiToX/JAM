@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
@@ -56,6 +57,7 @@ class NewJobApplicationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpViewStyle()
+        setUpViewAnimations()
         setUpClickListeners()
         if (isEditionMode) setUpEditionMode()
     }
@@ -68,6 +70,18 @@ class NewJobApplicationFragment : Fragment() {
         shapeDrawable.fillColor = ContextCompat.getColorStateList(requireContext(), R.color.white)
         ViewCompat.setBackground(binding.newJobLayout, shapeDrawable)
     }
+
+    private fun setUpViewAnimations() {
+        binding.apply {
+            btnBackToJobApplications.animation = setAnimation(R.anim.view_slide_down)
+            newJobTitle.animation = setAnimation(R.anim.view_slide_down)
+            newJobLayout.animation = setAnimation(R.anim.view_slide_up)
+            btnAddNewApplication.animation = setAnimation(R.anim.view_shows)
+        }
+    }
+
+    private fun setAnimation(animation: Int) =
+        AnimationUtils.loadAnimation(requireContext(), animation)
 
     private fun setUpClickListeners() {
         binding.apply {
@@ -86,7 +100,7 @@ class NewJobApplicationFragment : Fragment() {
         if (!areFieldsEmpty()) {
             if (!isEditionMode) insertJobApplication()
             else updateJobApplication()
-            navigateBack()
+            handleTransitionAnimation()
         } else {
             showWarning()
         }
@@ -112,11 +126,17 @@ class NewJobApplicationFragment : Fragment() {
                 jobPosition = etJobPosition.text.toString().trim()
                 company = etCompany.text.toString().trim()
                 location = etLocation.text.toString().trim()
-                if(!btnResetStatus.isEnabled) status = PENDING_STATUS
+                if (!btnResetStatus.isEnabled) status = PENDING_STATUS
                 applicationDate = dateTimeStamp
             }
         }
         viewModel.updateJobApplication(jobApplication)
+    }
+
+    private fun handleTransitionAnimation() {
+        binding.newJobMotionLayout.transitionToEnd {
+            navigateBack()
+        }
     }
 
     private fun showWarning() {
@@ -125,7 +145,7 @@ class NewJobApplicationFragment : Fragment() {
             binding.btnAddNewApplication,
             getString(R.string.add_new_job_application_error),
             Snackbar.LENGTH_SHORT
-        ).setAnchorView(binding.btnAddNewApplication).show()
+        ).show()
     }
 
     private fun areFieldsEmpty() = with(binding) {
