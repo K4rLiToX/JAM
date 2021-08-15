@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_job_motion_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
+    app:layoutDescription="@xml/fragment_new_job_application_scene"
     tools:context=".ui.fragments.NewJobApplicationFragment">
 
     <ImageButton
@@ -13,9 +15,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/black"
+        android:minHeight="48dp"
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/new_job_title"
@@ -59,6 +63,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="55dp"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:focusedByDefault="false"
             android:hint="@string/hint_job_position"
             android:textColorHint="?attr/colorPrimary"
             app:boxStrokeColor="?attr/colorPrimary"
@@ -96,6 +103,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="55dp"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:focusedByDefault="false"
             android:hint="@string/hint_company"
             android:textColorHint="?attr/colorPrimary"
             app:boxStrokeColor="?attr/colorPrimary"
@@ -133,6 +143,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="55dp"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:focusedByDefault="false"
             android:hint="@string/hint_location"
             android:textColorHint="?attr/colorPrimary"
             app:boxStrokeColor="?attr/colorPrimary"
@@ -170,6 +183,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="55dp"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:focusedByDefault="false"
             android:hint="@string/hint_application_date"
             android:textColorHint="?attr/colorPrimary"
             app:boxStrokeColor="?attr/colorPrimary"
@@ -213,11 +229,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_check"
+        android:tint="?attr/colorPrimary"
         app:backgroundTint="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="@+id/new_job_layout"
         app:layout_constraintTop_toTopOf="@+id/new_job_layout"
-        app:srcCompat="@drawable/ic_check"
-        app:tint="?attr/colorPrimary"
         tools:ignore="SpeakableTextPresentCheck" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

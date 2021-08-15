@@ -53,7 +53,7 @@ class GetStartedFragment : Fragment() {
         ViewCompat.setBackground(binding.getStartedLayout, shapeDrawable)
     }
 
-    private fun handleMotionLayoutTransitionListener() {
+    private fun handleMotionLayoutTransitionListener() =
         binding.getStartedMotionLayout.setTransitionListener(
             object : MotionLayout.TransitionListener {
 
@@ -88,5 +88,4 @@ class GetStartedFragment : Fragment() {
                 }
             }
         )
-    }
 }

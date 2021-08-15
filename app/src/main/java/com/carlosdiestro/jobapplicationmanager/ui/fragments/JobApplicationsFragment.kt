@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.PopupMenu
 import androidx.annotation.MenuRes
 import androidx.core.content.ContextCompat
@@ -58,11 +59,23 @@ class JobApplicationsFragment : Fragment(), IJobApplicationListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpViewAnimations()
         setUpClickListeners()
         setUpRecyclerView()
         setFilterText(viewModel.filterType)
         observeAllJobApplications()
     }
+
+    private fun setUpViewAnimations() {
+        binding.apply {
+            btnNewApplication.animation = setAnimation(R.anim.view_slide_up)
+            appToolbar.animation = setAnimation(R.anim.view_slide_down)
+        }
+    }
+
+    private fun setAnimation(animation: Int) =
+        AnimationUtils.loadAnimation(requireContext(), animation)
+
 
     private fun setUpClickListeners() {
         binding.apply {
