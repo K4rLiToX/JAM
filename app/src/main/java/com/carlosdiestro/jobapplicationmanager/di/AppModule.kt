@@ -3,6 +3,9 @@ package com.carlosdiestro.jobapplicationmanager.di
 import android.content.Context
 import androidx.room.Room
 import com.carlosdiestro.jobapplicationmanager.datasource.LocalDatabase
+import com.carlosdiestro.jobapplicationmanager.datasource.dao.JobApplicationDAO
+import com.carlosdiestro.jobapplicationmanager.datasource.repositories.MainRepository
+import com.carlosdiestro.jobapplicationmanager.interfaces.IMainRepository
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.LOCALDATABASE_NAME
 import dagger.Module
 import dagger.Provides
@@ -28,4 +31,10 @@ object AppModule {
     @Singleton
     @Provides
     fun provideJobApplicationDAO(db: LocalDatabase) = db.getJobApplicationDAO()
+
+    @Singleton
+    @Provides
+    fun provideMainRepository(
+        dao: JobApplicationDAO
+    ) = MainRepository(dao) as IMainRepository
 }

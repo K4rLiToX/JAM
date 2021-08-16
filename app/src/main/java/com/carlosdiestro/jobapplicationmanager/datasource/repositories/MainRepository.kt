@@ -2,32 +2,33 @@ package com.carlosdiestro.jobapplicationmanager.datasource.repositories
 
 import com.carlosdiestro.jobapplicationmanager.datasource.dao.JobApplicationDAO
 import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplication
+import com.carlosdiestro.jobapplicationmanager.interfaces.IMainRepository
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
     private val jobApplicationDAO: JobApplicationDAO
-) {
+) : IMainRepository {
 
-    suspend fun insertJobApplication(jobApplication: JobApplication) =
+    override suspend fun insertJobApplication(jobApplication: JobApplication) =
         jobApplicationDAO.insertJobApplication(jobApplication)
 
-    suspend fun updateJobApplication(jobApplication: JobApplication) =
+    override suspend fun updateJobApplication(jobApplication: JobApplication) =
         jobApplicationDAO.updateJobApplication(jobApplication)
 
-    suspend fun clearNonPendingJobApplications() = jobApplicationDAO.apply {
+    override suspend fun clearNonPendingJobApplications() = with(jobApplicationDAO) {
         clearAcceptedJobApplications()
         clearRejectedJobApplications()
     }
 
-    fun getAll() =
+    override fun getAll() =
         jobApplicationDAO.getAll()
 
-    fun getPendingJobApplications() =
+    override fun getPendingJobApplications() =
         jobApplicationDAO.getPendingJobApplications()
 
-    fun getAcceptedJobApplications() =
+    override fun getAcceptedJobApplications() =
         jobApplicationDAO.getAcceptedJobApplications()
 
-    fun getRejectedJobApplications() =
+    override fun getRejectedJobApplications() =
         jobApplicationDAO.getRejectedJobApplications()
 }
