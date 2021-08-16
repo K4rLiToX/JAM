@@ -63,7 +63,7 @@ class JobApplicationsFragment : Fragment(), IJobApplicationListener {
         setUpClickListeners()
         setUpRecyclerView()
         setFilterText(viewModel.filterType)
-        observeAllJobApplications()
+        observeJobApplications()
     }
 
     private fun setUpViewAnimations() {
