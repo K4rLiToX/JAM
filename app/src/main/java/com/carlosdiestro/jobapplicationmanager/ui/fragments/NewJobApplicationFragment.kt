@@ -186,7 +186,6 @@ class NewJobApplicationFragment : Fragment() {
             btnResetStatus.icon = null
             btnResetStatus.isEnabled = false
         }
-
     }
 
     private fun setUpEditionMode() {
