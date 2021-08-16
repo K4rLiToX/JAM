@@ -34,7 +34,7 @@ class JobApplicationAdapter(
     inner class JobApplicationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = JobApplicationItemLayoutBinding.bind(itemView)
 
-        fun bind(jobApplication: JobApplication) = with(binding) {
+        fun bind(jobApplication: JobApplication) = binding.apply {
             txtCompany.text = jobApplication.company
             txtApplicationDate.text = jobApplication.timeStampToDate(jobApplication.applicationDate)
             txtJobPosition.text = jobApplication.jobPosition

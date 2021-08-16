@@ -153,7 +153,7 @@ class JobApplicationsFragment : Fragment(), IJobApplicationListener {
         txtShowFilter.text = getString(id)
     }
 
-    private fun observeAllJobApplications() = viewModel.apply {
+    private fun observeJobApplications() = viewModel.apply {
         jobApplications.observe(viewLifecycleOwner, { jobApplications ->
             jobApplicationList = jobApplications
             recyclerAdapter.submitList(jobApplications)
