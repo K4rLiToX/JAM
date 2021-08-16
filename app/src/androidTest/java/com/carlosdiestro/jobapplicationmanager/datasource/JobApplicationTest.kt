@@ -9,6 +9,8 @@ import com.carlosdiestro.jobapplicationmanager.getOrAwaitValue
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.ACCEPTED_STATUS
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.REJECTED_STATUS
 import com.google.common.truth.Truth.assertThat
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
@@ -16,6 +18,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * @SmallTest is for Unit Tests
@@ -25,20 +29,24 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @SmallTest
+@HiltAndroidTest
 class JobApplicationTest {
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var database: LocalDatabase
+    @Inject
+    @Named("test_db")
+    lateinit var database: LocalDatabase
+
     private lateinit var dao: JobApplicationDAO
 
     @Before
     fun setup() {
-        database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            LocalDatabase::class.java
-        ).allowMainThreadQueries().build()
+        hiltRule.inject()
         dao = database.getJobApplicationDAO()
     }
 
