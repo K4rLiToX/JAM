@@ -5,7 +5,7 @@ import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplicatio
 import com.carlosdiestro.jobapplicationmanager.interfaces.IMainRepository
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.PENDING_STATUS
 
-class MainRepositoryMock: IMainRepository {
+class MainRepositoryMock : IMainRepository {
 
     private var allJobApplicationList = mutableListOf<JobApplication>()
     private var pendingJobApplicationList = mutableListOf<JobApplication>()
@@ -36,7 +36,8 @@ class MainRepositoryMock: IMainRepository {
     }
 
     override suspend fun clearNonPendingJobApplications() {
-        allJobApplicationList = (allJobApplicationList.filter { jobApplication -> jobApplication.status == PENDING_STATUS }).toMutableList()
+        allJobApplicationList =
+            (allJobApplicationList.filter { jobApplication -> jobApplication.status == PENDING_STATUS }).toMutableList()
         refreshLiveData()
     }
 
