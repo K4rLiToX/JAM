@@ -1,4 +1,4 @@
-package com.carlosdiestro.jobapplicationmanager
+package com.carlosdiestro.jobapplicationmanager.utils
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

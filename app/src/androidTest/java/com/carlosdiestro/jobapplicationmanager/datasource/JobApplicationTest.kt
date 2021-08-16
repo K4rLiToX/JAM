@@ -5,7 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.carlosdiestro.jobapplicationmanager.datasource.dao.JobApplicationDAO
 import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplication
-import com.carlosdiestro.jobapplicationmanager.getOrAwaitValue
+import com.carlosdiestro.jobapplicationmanager.utils.getOrAwaitValue
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.ACCEPTED_STATUS
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.REJECTED_STATUS
 import com.google.common.truth.Truth.assertThat

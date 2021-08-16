@@ -1,10 +1,10 @@
 package com.carlosdiestro.jobapplicationmanager.ui.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.carlosdiestro.jobapplicationmanager.MainCoroutineRule
+import com.carlosdiestro.jobapplicationmanager.utils.MainCoroutineRule
 import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplication
 import com.carlosdiestro.jobapplicationmanager.datasource.respositories.MainRepositoryMock
-import com.carlosdiestro.jobapplicationmanager.getOrAwaitValueTest
+import com.carlosdiestro.jobapplicationmanager.utils.getOrAwaitValueTest
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.ACCEPTED_STATUS
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.REJECTED_STATUS
 import com.google.common.truth.Truth.assertThat
