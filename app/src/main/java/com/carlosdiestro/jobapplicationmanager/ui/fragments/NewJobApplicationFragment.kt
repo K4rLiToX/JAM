@@ -165,7 +165,7 @@ class NewJobApplicationFragment : Fragment() {
     }
 
     private fun manageDatePickerClickListeners(datePicker: MaterialDatePicker<Long>) {
-        with(datePicker) {
+        datePicker.apply {
             addOnPositiveButtonClickListener {
                 dateTimeStamp = selection!!
                 binding.etApplicationDate.setText(
@@ -186,7 +186,6 @@ class NewJobApplicationFragment : Fragment() {
             btnResetStatus.icon = null
             btnResetStatus.isEnabled = false
         }
-
     }
 
     private fun setUpEditionMode() {

@@ -1,4 +1,4 @@
-package com.carlosdiestro.jobapplicationmanager.repositories
+package com.carlosdiestro.jobapplicationmanager.datasource.repositories
 
 import com.carlosdiestro.jobapplicationmanager.datasource.dao.JobApplicationDAO
 import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplication
