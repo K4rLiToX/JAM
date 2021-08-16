@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "com.carlosdiestro.jobapplicationmanagaer.HiltTestRunner"
+        testInstrumentationRunner "com.carlosdiestro.jobapplicationmanager.HiltTestRunner"
     }
     buildFeatures {
         viewBinding true
