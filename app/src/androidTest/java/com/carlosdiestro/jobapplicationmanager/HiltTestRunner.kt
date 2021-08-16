@@ -1,4 +1,4 @@
-package com.carlosdiestro.jobapplicationmanager.utils
+package com.carlosdiestro.jobapplicationmanager
 
 import android.app.Application
 import android.content.Context
