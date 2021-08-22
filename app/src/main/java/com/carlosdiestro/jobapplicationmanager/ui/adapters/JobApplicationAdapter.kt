@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.carlosdiestro.jobapplicationmanager.R
 import com.carlosdiestro.jobapplicationmanager.databinding.JobApplicationItemLayoutBinding
 import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplication
+import com.carlosdiestro.jobapplicationmanager.utils.Constants
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.ACCEPTED_STATUS
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.PENDING_STATUS
-import com.carlosdiestro.jobapplicationmanager.utils.Constants.REJECTED_STATUS
 
 class JobApplicationAdapter(
     private val ctx: Context,
@@ -35,12 +35,14 @@ class JobApplicationAdapter(
         private val binding = JobApplicationItemLayoutBinding.bind(itemView)
 
         fun bind(jobApplication: JobApplication) = binding.apply {
-            txtCompany.text = jobApplication.company
-            txtApplicationDate.text = jobApplication.timeStampToDate(jobApplication.applicationDate)
-            txtJobPosition.text = jobApplication.jobPosition
-            txtLocation.text = jobApplication.location
-            txtStatus.text = jobApplication.mapStatusToString(ctx, jobApplication.status)
-            txtStatus.setBackgroundColor(getStatusBackgroundColor(jobApplication.status))
+            jobApplication.apply {
+                txtCompany.text = company
+                txtApplicationDate.text = Constants.timeStampToDate(applicationDate)
+                txtJobPosition.text = jobPosition
+                txtLocation.text = location
+                txtStatus.text = mapStatusToString(ctx, status)
+                txtStatus.setBackgroundColor(getStatusBackgroundColor(status))
+            }
         }
 
         private fun getStatusBackgroundColor(status: Int) = when(status) {
