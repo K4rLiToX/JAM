@@ -30,7 +30,7 @@ import javax.inject.Named
 @RunWith(AndroidJUnit4::class)
 @SmallTest
 @HiltAndroidTest
-class JobApplicationTest {
+class JobApplicationDAOTest {
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
