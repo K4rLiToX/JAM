@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/btn_add_new_application"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@+id/new_job_layout"
+            motion:layout_constraintTop_toTopOf="@+id/new_job_layout" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/btn_add_new_application"
+            android:layout_width="1000dp"
+            android:layout_height="1000dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@+id/new_job_motion_layout"
+            motion:layout_constraintEnd_toEndOf="@+id/new_job_motion_layout"
+            motion:layout_constraintStart_toStartOf="@+id/new_job_motion_layout"
+            motion:layout_constraintTop_toTopOf="@+id/new_job_motion_layout" />
+    </ConstraintSet>
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="300">
+        <OnClick
+            motion:clickAction="transitionToEnd"
+            motion:targetId="@+id/btn_add_new_application" />
+    </Transition>
+</MotionScene>

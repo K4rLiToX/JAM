@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/getStartedFragment">
+
+    <fragment
+        android:id="@+id/getStartedFragment"
+        android:name="com.carlosdiestro.jobapplicationmanager.ui.fragments.GetStartedFragment"
+        android:label="fragment_splashscreen"
+        tools:layout="@layout/fragment_get_started">
+        <action
+            android:id="@+id/getStartedToJobApplications"
+            app:destination="@id/jobApplicationsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/getStartedFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/jobApplicationsFragment"
+        android:name="com.carlosdiestro.jobapplicationmanager.ui.fragments.JobApplicationsFragment"
+        android:label="fragment_job_applications"
+        tools:layout="@layout/fragment_job_applications">
+        <action
+            android:id="@+id/jobApplicationsToNewJobApplication"
+            app:destination="@id/newJobApplicationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newJobApplicationFragment"
+        android:name="com.carlosdiestro.jobapplicationmanager.ui.fragments.NewJobApplicationFragment"
+        android:label="fragment_new_job_application"
+        tools:layout="@layout/fragment_new_job_application" >
+        <argument
+            android:name="jobApplication"
+            app:argType="string" />
+    </fragment>
+</navigation>
