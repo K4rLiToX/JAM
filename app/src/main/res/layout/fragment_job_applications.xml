@@ -107,7 +107,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="@color/dark_grey"
-        app:shapeAppearanceOverlay="@style/PrimaryFAB"
         app:srcCompat="@drawable/ic_add"
         app:tint="?attr/colorOnPrimary" />
 
