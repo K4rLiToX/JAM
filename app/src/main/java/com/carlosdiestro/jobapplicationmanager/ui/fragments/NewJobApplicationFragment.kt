@@ -14,6 +14,7 @@ import com.carlosdiestro.jobapplicationmanager.R
 import com.carlosdiestro.jobapplicationmanager.databinding.FragmentNewJobApplicationBinding
 import com.carlosdiestro.jobapplicationmanager.datasource.entities.JobApplication
 import com.carlosdiestro.jobapplicationmanager.ui.viewmodels.MainViewModel
+import com.carlosdiestro.jobapplicationmanager.utils.Constants
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.GSON
 import com.carlosdiestro.jobapplicationmanager.utils.Constants.PENDING_STATUS
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -22,8 +23,6 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
-import java.util.*
 
 @AndroidEntryPoint
 class NewJobApplicationFragment : Fragment() {
@@ -169,7 +168,7 @@ class NewJobApplicationFragment : Fragment() {
             addOnPositiveButtonClickListener {
                 dateTimeStamp = selection!!
                 binding.etApplicationDate.setText(
-                    SimpleDateFormat("dd/MM/yyyy", Locale.US).format(Date(dateTimeStamp))
+                    Constants.timeStampToDate(dateTimeStamp)
                 )
                 dismiss()
             }
@@ -195,7 +194,7 @@ class NewJobApplicationFragment : Fragment() {
                 etJobPosition.setText(jobPosition)
                 etCompany.setText(company)
                 etLocation.setText(location)
-                etApplicationDate.setText(timeStampToDate(applicationDate))
+                etApplicationDate.setText(Constants.timeStampToDate(applicationDate))
                 dateTimeStamp = applicationDate
             }
             btnResetStatus.visibility = View.VISIBLE

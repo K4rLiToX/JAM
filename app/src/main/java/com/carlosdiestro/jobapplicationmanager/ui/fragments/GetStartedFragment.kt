@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.constraintlayout.motion.widget.TransitionAdapter
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -55,36 +56,13 @@ class GetStartedFragment : Fragment() {
 
     private fun handleMotionLayoutTransitionListener() =
         binding.getStartedMotionLayout.setTransitionListener(
-            object : MotionLayout.TransitionListener {
-
-                override fun onTransitionStarted(
-                    motionLayout: MotionLayout?,
-                    startId: Int,
-                    endId: Int
-                ) {
-                }
-
-                override fun onTransitionChange(
-                    motionLayout: MotionLayout?,
-                    startId: Int,
-                    endId: Int,
-                    progress: Float
-                ) {
-                }
+            object : TransitionAdapter() {
 
                 override fun onTransitionCompleted(
                     motionLayout: MotionLayout?,
                     currentId: Int
                 ) {
                     findNavController().navigate(R.id.getStartedToJobApplications)
-                }
-
-                override fun onTransitionTrigger(
-                    motionLayout: MotionLayout?,
-                    triggerId: Int,
-                    positive: Boolean,
-                    progress: Float
-                ) {
                 }
             }
         )

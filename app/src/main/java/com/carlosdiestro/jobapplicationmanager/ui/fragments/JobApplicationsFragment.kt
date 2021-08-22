@@ -164,18 +164,19 @@ class JobApplicationsFragment : Fragment(), IJobApplicationListener {
     private fun setViewsToShow(jobApplications: List<JobApplication>) {
         var recyclerViewVisibility = View.VISIBLE
         var emptyListIconVisibility = View.INVISIBLE
-        
-        if(jobApplications.isEmpty()) {
+
+        if (jobApplications.isEmpty()) {
             recyclerViewVisibility = View.INVISIBLE
             emptyListIconVisibility = View.INVISIBLE
         }
         viewsVisibility(recyclerViewVisibility, emptyListIconVisibility)
     }
 
-    private fun viewsVisibility(recyclerViewVisibility: Int, emptyListIconVisibility: Int) = binding.apply {
-        rvJobApplications.visibility = recyclerViewVisibility
-        icEmptyList.visibility = emptyListIconVisibility
-    }
+    private fun viewsVisibility(recyclerViewVisibility: Int, emptyListIconVisibility: Int) =
+        binding.apply {
+            rvJobApplications.visibility = recyclerViewVisibility
+            icEmptyList.visibility = emptyListIconVisibility
+        }
 
     private val swipeGesture =
         object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
