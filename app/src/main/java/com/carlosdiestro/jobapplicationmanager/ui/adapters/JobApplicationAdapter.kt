@@ -23,7 +23,10 @@ class JobApplicationAdapter(
     ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobApplicationViewHolder {
-        return JobApplicationViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.job_application_item_layout, parent, false))
+        return JobApplicationViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.job_application_item_layout, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: JobApplicationViewHolder, position: Int) {
@@ -45,7 +48,7 @@ class JobApplicationAdapter(
             }
         }
 
-        private fun getStatusBackgroundColor(status: Int) = when(status) {
+        private fun getStatusBackgroundColor(status: Int) = when (status) {
             PENDING_STATUS -> ctx.getColor(R.color.light_blue)
             ACCEPTED_STATUS -> ctx.getColor(R.color.light_green)
             else -> ctx.getColor(R.color.light_red)
